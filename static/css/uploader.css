@@ -1,0 +1,84 @@
+/* ===== 上传区域 ===== */
+.uploader-zone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 36px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition);
+  position: relative;
+}
+.uploader-zone:hover,
+.uploader-zone.dragover {
+  border-color: var(--primary);
+  background: var(--primary-light);
+}
+.uploader-zone .upload-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+  display: block;
+}
+.uploader-zone .upload-hint {
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.uploader-zone .upload-hint strong {
+  color: var(--primary);
+}
+.uploader-zone input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* ===== 上传进度列表 ===== */
+.upload-progress-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.upload-progress-item {
+  background: var(--primary-light);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 13px;
+}
+.upload-progress-item .item-name {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  color: var(--text-primary);
+}
+.upload-progress-item .item-name .status {
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  margin-left: 8px;
+}
+.upload-progress-item .item-name .status.done  { color: var(--success); }
+.upload-progress-item .item-name .status.error { color: var(--danger); }
+
+.progress-bar-wrap {
+  height: 4px;
+  background: #D6E8FA;
+  border-radius: 2px;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), #6AB4F5);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+/* 处理中脉冲动画 */
+.progress-bar-pulse {
+  animation: pulse 1.2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}

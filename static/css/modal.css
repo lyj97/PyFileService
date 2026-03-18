@@ -1,0 +1,134 @@
+/* ===== 通用弹窗遮罩 ===== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 30, 60, 0.45);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  backdrop-filter: blur(2px);
+}
+
+/* ===== 预览弹窗 ===== */
+.modal {
+  background: var(--card-bg);
+  border-radius: 14px;
+  box-shadow: 0 20px 60px rgba(10, 30, 60, 0.2);
+  max-width: 900px;
+  width: 100%;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.modal-header .modal-title {
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 600px;
+}
+.modal-close {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  border: none;
+  background: var(--primary-light);
+  color: var(--text-secondary);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--transition);
+}
+.modal-close:hover { background: #D6E8FA; color: var(--text-primary); }
+.modal-body {
+  flex: 1;
+  overflow: auto;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 预览内容类型 */
+.preview-image  { max-width: 100%; max-height: 70vh; border-radius: 6px; object-fit: contain; }
+.preview-text {
+  width: 100%;
+  max-height: 65vh;
+  overflow: auto;
+  background: #F8FAFB;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: var(--text-primary);
+}
+.preview-iframe { width: 100%; height: 65vh; border: none; border-radius: 6px; }
+.preview-video,
+.preview-audio  { max-width: 100%; border-radius: 6px; }
+.preview-unsupported {
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 40px;
+}
+.preview-unsupported .unsupported-icon { font-size: 48px; display: block; margin-bottom: 12px; }
+
+/* ===== 删除确认弹窗 ===== */
+.confirm-dialog {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 20px 60px rgba(10, 30, 60, 0.2);
+  width: 340px;
+  text-align: center;
+}
+.confirm-dialog .confirm-icon { font-size: 36px; margin-bottom: 12px; display: block; }
+.confirm-dialog h3 { font-size: 16px; margin-bottom: 8px; }
+.confirm-dialog p  { font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; }
+.confirm-actions   { display: flex; gap: 10px; justify-content: center; }
+
+/* ===== Toast 通知 ===== */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 300;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+.toast {
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  animation: slideIn 0.2s ease;
+  max-width: 320px;
+}
+.toast.success { background: #EBF9F1; color: #2D8A55; border: 1px solid #B8E6CF; }
+.toast.error   { background: #FFF0F0; color: #C04A4A; border: 1px solid #FFC5C5; }
+.toast.info    { background: var(--primary-light); color: var(--primary); border: 1px solid var(--border); }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
