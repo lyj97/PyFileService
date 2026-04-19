@@ -1,4 +1,15 @@
 import os
+from pathlib import Path
+
+# 自动加载项目根目录的 .env 文件（如果存在）
+_env_path = Path(__file__).parent / ".env"
+if _env_path.exists():
+    with open(_env_path) as _f:
+        for _line in _f:
+            _line = _line.strip()
+            if _line and not _line.startswith("#") and "=" in _line:
+                _k, _v = _line.split("=", 1)
+                os.environ.setdefault(_k.strip(), _v.strip())
 
 # 上传文件存储目录
 UPLOAD_DIR = os.path.join(os.path.dirname(__file__), "uploads")
@@ -7,12 +18,12 @@ UPLOAD_DIR = os.path.join(os.path.dirname(__file__), "uploads")
 # BASE_DIR 设为 "/" 表示允许操作任意路径（内网私用，API Key 保护）
 FS_BASE_DIR = os.environ.get("FS_BASE_DIR", "/")
 
-# API Key 认证（必须通过环境变量 FS_API_KEY 设置，不提供默认值）
+# API Key 认证（通过 .env 文件或环境变量 FS_API_KEY 设置）
 FS_API_KEY = os.environ.get("FS_API_KEY")
 if not FS_API_KEY:
     raise RuntimeError(
-        "环境变量 FS_API_KEY 未设置。请先设置一个强随机 Key，例如：\n"
-        "  export FS_API_KEY=$(python3 -c \"import secrets; print(secrets.token_hex(24))\")"
+        "FS_API_KEY 未设置。请在项目根目录创建 .env 文件并写入：\n"
+        "  FS_API_KEY=$(python3 -c \"import secrets; print(secrets.token_hex(24))\")"
     )
 
 # SQLite 数据库路径
