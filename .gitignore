@@ -1,3 +1,31 @@
+# Runtime database
 /fileservice.db
+
+# IDE
 /.idea/*
+/.vscode/*
+
+# Uploaded files (runtime data)
 /uploads/*
+/gradle_cache/*
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets / local config
+.env
+*.env.local

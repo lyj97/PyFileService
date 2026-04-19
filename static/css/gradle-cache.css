@@ -1,0 +1,132 @@
+/* ===== Gradle 缓存页面样式 ===== */
+
+/* 页面容器 */
+.gc-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 24px;
+}
+
+/* 顶部状态栏 */
+.gc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.gc-header-left {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+.gc-meta {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.gc-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 服务状态指示器 */
+.gc-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+}
+.gc-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--text-secondary);
+  flex-shrink: 0;
+}
+.gc-status.checking .gc-status-dot {
+  background: #F0A500;
+  animation: gc-pulse 1s infinite;
+}
+.gc-status.ok {
+  border-color: #B8E6CC;
+  background: #F0FFF6;
+  color: #2E7D52;
+}
+.gc-status.ok .gc-status-dot { background: var(--success); }
+.gc-status.error {
+  border-color: #FFC5C5;
+  background: #FFF5F5;
+  color: var(--danger);
+}
+.gc-status.error .gc-status-dot { background: var(--danger); }
+@keyframes gc-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.3; }
+}
+
+/* 空状态 */
+.gc-empty {
+  text-align: center;
+  padding: 48px 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* 缓存列表表格 */
+.gc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.gc-table th {
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  border-bottom: 1px solid var(--border);
+}
+.gc-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #F0F6FF;
+  vertical-align: middle;
+}
+.gc-table tr:last-child td { border-bottom: none; }
+.gc-table tr:hover td { background: var(--primary-light); }
+
+/* Key 类型徽章 */
+.gc-key-badge {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+.gc-key-badge.deps   { background: #EBF4FF; color: #357ABD; }
+.gc-key-badge.jars   { background: #FFF3E0; color: #E07B00; }
+.gc-key-badge.latest { background: #F0FFF6; color: #2E7D52; }
+.gc-key-badge.other  { background: #F5F5F5; color: #666; }
+
+.gc-key-name {
+  font-family: "SF Mono", "Menlo", "Monaco", "Consolas", monospace;
+  font-size: 12px;
+  color: var(--text-primary);
+  word-break: break-all;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .gc-page { padding: 16px; }
+  .gc-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .gc-header-right { width: 100%; justify-content: space-between; }
+}

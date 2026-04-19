@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from database import init_db
-from routers import files, storage
+from routers import files, storage, filesystem, gradle_cache
 import os
 
 app = FastAPI(title="PyFileService", description="文件上传下载管理服务")
@@ -13,6 +13,8 @@ init_db()
 # 注册 API 路由
 app.include_router(files.router)
 app.include_router(storage.router)
+app.include_router(filesystem.router)
+app.include_router(gradle_cache.router)
 
 # 挂载静态资源目录
 static_dir = os.path.join(os.path.dirname(__file__), "static")
